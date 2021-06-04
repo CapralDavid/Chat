@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     margin-left: 5%;
-    color: white;
+    color: rgb(0, 0, 0);
   }
   
   .rightInnContainer {
@@ -24,5 +24,6 @@
   }
   
   .onlineIcon {
-    margin-right: 5%;
+    margin-right: 10px;
+    max-width: 20px;
   }

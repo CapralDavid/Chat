@@ -2,8 +2,8 @@ import React from 'react';
 
 import './Infobar.css';
 
-//import closeIcon from '../../icons/closeIcon';
-//import onlineIcon from '../../icons/onlineIcon';
+import closeIcon from '../../icons/closeIcon.png';
+import onlineIcon from '../../icons/onlineIcon.png';
 
 //СДЕЛАТЬ CSS
 //найти в инете иконки для онлайн(можно просто зеленый кружочек) onlineIcon
@@ -16,11 +16,11 @@ import './Infobar.css';
 let infobar = ({ room }) => (
     <div className = "infobar">
         <div className="leftInnContainer">
-            <img className="onlineIcon"  alt="ImageOnline" />
+            <img className="onlineIcon" src = {onlineIcon} alt="ImageOnline" />
             <h3 color = "black">{ room }</h3>
         </div>
         <div className="rightInnContainer">
-            <a href="/"><img alt="ImageClose" /></a>
+            <a href="/"><img src={closeIcon}  alt="ImageClose" /></a>
         </div>
     </div>
 
