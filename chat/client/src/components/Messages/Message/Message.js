@@ -2,36 +2,51 @@ import React from 'react';
 
 import './Message.css';
 
-import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { text, user }, name }) => {
-  let isSentByCurrentUser = false;
 
-  const trimmedName = name.trim().toLowerCase();
+//СДЕЛАТЬ CSS
 
-  if(user === trimmedName) {
-    isSentByCurrentUser = true;
-  }
 
-  return (
-    isSentByCurrentUser
-      ? (
-        <div className="messageContainer justifyEnd">
-          <p className="sentText pr-10">{trimmedName}</p>
-          <div className="messageBox backgroundBlue">
-            <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
-          </div>
-        </div>
+
+let Message = ({ message: { text, user }, name }) => {
+    let isSent = false;
+    //name получает но message пустой
+    console.log("NAME ", name);
+
+    const trimmName = name.trim().toLowerCase();
+
+    console.log("text ", text);
+
+    if(user === trimmName){
+        console.log("issent TRUE");
+        isSent = true;
+    }
+
+    return(
+        isSent
+        ? (
+            <div className="msgContainer justifyEnd">
+                <p className="sentMsg pr-10">{trimmName}</p>
+                <div className="msgBox">
+                    <p className="msgText colorWhite">{text}</p>
+                </div>
+            </div>
         )
         : (
-          <div className="messageContainer justifyStart">
-            <div className="messageBox backgroundLight">
-              <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
+            <div className="msgContainer justifyStart">
+              <div className="msgBox">
+                  <p className="msgText colorDark">{text}</p>
+              </div>
+              <p className="sentMsg pl-10">{user}</p>
             </div>
-            <p className="sentText pl-10 ">{user}</p>
-          </div>
         )
-  );
-}
+    );
+
+};
+
+
+//pl-10 = padding left 10
+//pr-10 = padding right 10
+
 
 export default Message;

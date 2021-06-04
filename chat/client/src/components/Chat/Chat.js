@@ -1,68 +1,102 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
-import io from "socket.io-client";
-
-import TextContainer from '../TextContainer/TextContainer';
-import Messages from '../Messages/Messages';
-import InfoBar from '../InfoBar/InfoBar';
-import Input from '../Input/Input';
-
+import io from 'socket.io-client';
 import './Chat.css';
 
-const ENDPOINT = 'https://project-chat-application.herokuapp.com/';
+import Infobar from '../Infobar/Infobar.js';
+import Input from '../Input/Input.js';
+import Messages from '../Messages/Messages.js';
+let socket;  //используем io
 
-let socket;
 
-const Chat = ({ location }) => {
-  const [name, setName] = useState('');
-  const [room, setRoom] = useState('');
-  const [users, setUsers] = useState('');
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+//СДЕЛАТЬ CSS (/chat/chat.css)
+//import './Chat.css';
 
-  useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
+const Chat = ({location}) => {
+    const [name, setName] = useState('');
+    const [room, setRoom] = useState('');
+    const [message, setMessage] = useState('');
+    const [messages, setMessages] = useState([]);  
+    const ENDPOINT = 'http://localhost:5000'; //'localhost:5000'  '5000
 
-    socket = io(ENDPOINT);
 
-    setRoom(room);
-    setName(name)
+    useEffect(() =>{
+        const {name, room} = queryString.parse(location.search);
 
-    socket.emit('join', { name, room }, (error) => {
-      if(error) {
-        alert(error);
-      }
-    });
-  }, [ENDPOINT, location.search]);
-  
-  useEffect(() => {
-    socket.on('message', message => {
-      setMessages(messages => [ ...messages, message ]);
-    });
+        socket = io(ENDPOINT); //(ENDPOINT) раньше так было
+        socket.on("connect", () => {
+           
+            console.log("CONNECTED");
+
+        });
+
+        socket.emit('join', { name, room }, ({error}) =>{
+
+        });
+
+
+
+        
+        setName(name);
+        setRoom(room);
+        console.log(name, room, "YO");
+        console.log(socket, "YO ITS SOCKET");
+
+        return () =>{
+            //socket.emit('disconnect');//не могу исп.пишет Error: "disconnect" is a reserved event name.почему не могу хз
+            //пишет user left только когда перезапускаю страницу,а не когда иду назад на вкладку
+            socket.off();
+        }
+
+
+        
+    }, [ENDPOINT, location.search]);
+
+
+    useEffect(() => {
+
+        
+        socket.on("messageAdmin", (message) => {                                            //(msg) =>{}
+            setMessages([...messages, message]);   //setMessages([...messages, message]);  //(msg => [...messages, message]);  
+            
+        });
+
+        //!!!!!!!!!!!! НАШЕЛ ОШИБКУ !!!!!!!!!!в аргументе был msg, а анадо было message, что бы в setmessages в аргумент всунуть сообщение
+
+
+    }, [messages]); //, message браузер жалуется что там нет аргумента.но что есть он или нет,не вижу изменений  // [messages]);
+
+    //НЕЗАБУДЬ нужна функция для отправки сообщения (sendMessage)
     
-    socket.on("roomData", ({ users }) => {
-      setUsers(users);
-    });
-}, []);
+    //ПРОБЛЕМАили нет?
+    //при console.log("message, messages", message, messages); не показывается последнее отправленное сообщение,и еще сообщение от админ(а должно ли оно?)
+    const sendMessage = (event) =>{
+        event.preventDefault();
+        if(message){
+            socket.emit('messageSend', message, () => setMessage(''));  //=> setMessage('')
+        }
 
-  const sendMessage = (event) => {
-    event.preventDefault();
+    };
+    console.log("message, messages", messages);  // , message, messages);
 
-    if(message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
-    }
-  }
+    //НУЖНО СДЕЛАТЬ CSS
 
-  return (
-    <div className="outerContainer">
-      <div className="container">
-          <InfoBar room={room} />
-          <Messages messages={messages} name={name} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-      </div>
-      <TextContainer users={users}/>
-    </div>
-  );
+    return(
+        <div className="outerContainer">
+            <div className="container">
+                <Infobar room={ room }/>
+                <Messages messages={ messages } name={ name }/>
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+                
+            </div>
+        </div>
+    )
 }
 
+/*  //это было после Infobar
+<input 
+                value={message} 
+                onChange={(event) => setMessage(event.target.value)}
+                onKeyPress={(event => event.key == 'Enter'? sendMessage(event) : null)} /> 
+*/
 export default Chat;

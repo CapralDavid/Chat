@@ -1,51 +1,73 @@
-const http = require('http');
 const express = require('express');
-const socketio = require('socket.io');
-const cors = require('cors');
+const http = require('http');
+const app = express();
+const server = http.createServer(app); 
+// const { Server } = require("socket.io");
+// const socketio = new Server(server);
+const {addUser, removeUser, getUser, getUsersInRoom} = require('./user.js');
 
-const { addUser, removeUser, getUser, getUsersInRoom } = require('./users');
+const socketio = require('socket.io')(server, {
+    cors: {
+        origin: '*',
+      }
+});   
+
+
+const PORT = process.env.PORT || 5000;
 
 const router = require('./router');
+const { isObject } = require('util');
 
-const app = express();
-const server = http.createServer(app);
-const io = socketio(server);
 
-app.use(cors());
-app.use(router);
 
-io.on('connect', (socket) => {
-  socket.on('join', ({ name, room }, callback) => {
-    const { error, user } = addUser({ id: socket.id, name, room });
+//const io = socketio(server); 
+//const { Server } = require("socket.io");
+//const io = new Server(server);
+//
 
-    if(error) return callback(error);
+socketio.on('connection', (socket) => {
+    console.log('User connected');
+    
 
-    socket.join(user.room);
+    socket.on('join', (msg, callback) => {  //({ name, room })  //(msg, callback)
 
-    socket.emit('message', { user: 'admin', text: `${user.name}, welcome to room ${user.room}.`});
-    socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name} has joined!` });
+        const { error, user } = addUser({ id: socket.id, name: msg.name, room: msg.room});
+        //console.log("USER SAVED", user);
 
-    io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
+        if(error) return callback(error);
+        console.log("joined ",user.room)
+        
 
-    callback();
-  });
+        socket.emit('messageAdmin', {user: 'admin', text:`${user.name}, welcome.Room: ${user.room}`});
+        socket.broadcast.to(user.room).emit('message', { user:'admin', text:`${user.name} joined room ${user.room}`});
+        
+        console.log(msg.room, msg.name); 
+        //callback();   //ндо ли его сюда писать?
+        socket.join(user.room);
+    });
 
-  socket.on('sendMessage', (message, callback) => {
-    const user = getUser(socket.id);
+    socket.on("messageSend", (msg, callback) =>{
+        let user = getUser(socket.id);
+        //TypeError: Cannot read property 'room' of undefined
+        //когда без консол лога что ниже,выдает ошибку
+        //когда с ним,ошибки нет,НО сообщение не показыв в чате
+        //может быть getUser теперь не может найти юзера в списке?????
 
-    io.to(user.room).emit('message', { user: user.name, text: message });
+        //UPDATE вроде исправил.в input.js в onKeyPress в инпуте я убрал скобки с аргумента(event)
+        //маразм какой то. а нет опять ошибка,я убрал скобки в event в OnChange.
+        //что то я не выкупаю 
+        //сообщения не видно,но когда их пишешь строка ввода опускается вниз,может scroll down не работает?
+        console.log(user, "user, from server/index.js");
+        socketio.to(user.room).emit('messageAdmin', { user: user.name, text: msg});//можно ли вместо socketio просто socket.если нет,то почему выше socket.broadcasr.to(room), а не socketio
+        callback();
+    });
 
-    callback();
-  });
-
-  socket.on('disconnect', () => {
-    const user = removeUser(socket.id);
-
-    if(user) {
-      io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
-      io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
-    }
-  })
+    socket.on('disconnect', () => {
+        let user = removeUser(socket.id);
+        console.log('User left');
+    })
 });
 
-server.listen(process.env.PORT || 5000, () => console.log(`Server has started.`));
+app.use(router);
+
+server.listen(PORT, () => console.log(`Server has started.Port = ${PORT}`));
