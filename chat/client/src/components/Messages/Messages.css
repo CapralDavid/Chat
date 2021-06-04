@@ -3,3 +3,16 @@
   overflow: auto;
   flex: auto;
 }
+.messages:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  z-index: 1;
+  border-style: solid;
+  border-width: 0 0 39px 32px;
+  border-color: transparent transparent #000000 transparent;
+  top: 66%;
+  left: -32px;
+  margin-top: -19.5px;
+ }
