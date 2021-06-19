@@ -1,6 +1,6 @@
 //'use strict';  //надо ли?
 
-import React from 'react';
+//import React from 'react';
 
 //import renderer from 'react-test-renderer';
 import { create, act } from "react-test-renderer";
@@ -20,14 +20,14 @@ test('idi naxui', () => {
 
 
 //создаем join и потом сравниваем его с снапшотом
-describe('test', () => {
-    test('test1', () =>{
-        let component;
-        act(() =>{
-            component = create(<Join> </Join>)
-        })
-    })
-});
+// describe('test', () => {
+//     test('test1', () =>{
+//         let component;
+//         act(() =>{
+//             //component = create(<Join> </Join>)
+//         })
+//     })
+// });
 
 
 /*
