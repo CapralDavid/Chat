@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test render Input empty render correct: Input Empty 1`] = `
+<form
+  className="form"
+>
+  <input
+    className="input"
+    onChange={[Function]}
+    onKeyPress={[Function]}
+    placeholder="your message..."
+    type="text"
+  />
+  <button
+    className="sendButton"
+    onClick={[Function]}
+  >
+    Send
+  </button>
+</form>
+`;
+
+exports[`test render Input empty render correct: Input wirh msg 1`] = `
+<form
+  className="form"
+>
+  <input
+    className="input"
+    onChange={[Function]}
+    onKeyPress={[Function]}
+    placeholder="your message..."
+    type="text"
+  />
+  <button
+    className="sendButton"
+    onClick={[Function]}
+  >
+    Send
+  </button>
+</form>
+`;

@@ -2,20 +2,20 @@
 
 exports[`test render Join element render correct: Messages Empty 1`] = `
 <div
-  className="react-scroll-to-bottom--css-nctuf-79elbk messages"
+  className="react-scroll-to-bottom--css-ahwli-79elbk messages"
 >
   <div
-    className="react-scroll-to-bottom--css-nctuf-1n7m0yu"
+    className="react-scroll-to-bottom--css-ahwli-1n7m0yu"
   />
 </div>
 `;
 
 exports[`test render Join element render correct: Messages One 1`] = `
 <div
-  className="react-scroll-to-bottom--css-nctuf-79elbk messages"
+  className="react-scroll-to-bottom--css-ahwli-79elbk messages"
 >
   <div
-    className="react-scroll-to-bottom--css-nctuf-1n7m0yu"
+    className="react-scroll-to-bottom--css-ahwli-1n7m0yu"
   >
     <div>
        
@@ -45,10 +45,10 @@ exports[`test render Join element render correct: Messages One 1`] = `
 
 exports[`test render Join element render correct: Messages several 1`] = `
 <div
-  className="react-scroll-to-bottom--css-nctuf-79elbk messages"
+  className="react-scroll-to-bottom--css-ahwli-79elbk messages"
 >
   <div
-    className="react-scroll-to-bottom--css-nctuf-1n7m0yu"
+    className="react-scroll-to-bottom--css-ahwli-1n7m0yu"
   >
     <div>
        

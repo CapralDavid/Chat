@@ -4,7 +4,10 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import Messages from './Messages.js';
 
 
-
+//без обновления снапшота(npm test -- -u) элементы с react-scroll-to-bottom
+//не совпадают,так как сощдавая новый элемент класс изменяется,хотя 
+//деле ничего не изменилось
+//просто каждый раз сайт создает новый элемент
 
 describe('test render Join element', () => {
 
