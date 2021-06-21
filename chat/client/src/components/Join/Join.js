@@ -26,3 +26,5 @@ const Join = () => {
 }
 
 export default Join;
+
+// module.exports = {Join}

@@ -1,19 +1,76 @@
-//'use strict';  //надо ли?
-
-//import React from 'react';
-
-//import renderer from 'react-test-renderer';
-import { create, act } from "react-test-renderer";
-
+import React from 'react';
+import renderer from 'react-test-renderer';
+import { BrowserRouter as Router } from 'react-router-dom';
 import Join from './Join.js';
 
 
-const three = 3;
 
-test('idi naxui', () => {
-    expect(three).toEqual(3);
+//выдает ошибку
+//Invariant failed: You should not use <Link> outside a <Router>
+//
+
+const Container = Join;
+
+let wrapper;
+
+beforeEach(() => {
+  wrapper = shallow(<Container />);
+});
+
+
+test('render correct', () => {
+  expect(wrapper).toMatchSnapshot()
 
 }); 
+
+
+// test('render correct', () => {
+//   const component = renderer.create(
+//       <Join></Join>
+//     );
+
+//   let tree = component.toJSON();
+//   expect(tree).toMatchSnapshot();
+  
+
+// }); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//'use strict';  //надо ли?
+
+// import React from 'react';
+
+// import renderer from 'react-test-renderer';
+// import { create, act } from "react-test-renderer";
+
+// import Join from './Join.js';
+
+// // const Join = require('./Join.js')
+// const three = 3;
+
+// test('idi naxui', () => {
+//     expect(three).toEqual(3);
+
+// }); 
 
 //проверяем окно выбора имени и комнаты 
 //test('');

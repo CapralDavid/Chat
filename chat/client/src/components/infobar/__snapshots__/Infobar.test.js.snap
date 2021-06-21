@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render correct 1`] = `
+<div
+  className="infobar"
+>
+  <div
+    className="leftInnContainer"
+  >
+    <img
+      alt="ImageOnline"
+      className="onlineIcon"
+      src="test-file-stub"
+    />
+    <h3
+      color="black"
+    >
+      RoomOne
+    </h3>
+  </div>
+  <div
+    className="rightInnContainer"
+  >
+    <a
+      href="/"
+    >
+      <img
+        alt="ImageClose"
+        src="test-file-stub"
+      />
+    </a>
+  </div>
+</div>
+`;
