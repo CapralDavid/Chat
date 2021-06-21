@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`test render Join element render correct: Messages Empty 1`] = `
+<div
+  className="react-scroll-to-bottom--css-nctuf-79elbk messages"
+>
+  <div
+    className="react-scroll-to-bottom--css-nctuf-1n7m0yu"
+  />
+</div>
+`;
+
+exports[`test render Join element render correct: Messages One 1`] = `
+<div
+  className="react-scroll-to-bottom--css-nctuf-79elbk messages"
+>
+  <div
+    className="react-scroll-to-bottom--css-nctuf-1n7m0yu"
+  >
+    <div>
+       
+      <div
+        className="msgContainer justifyEnd"
+      >
+        <p
+          className="sentMsg pr-10"
+        >
+          one
+        </p>
+        <div
+          className="msgBox"
+        >
+          <p
+            className="msgText colorWhite"
+          >
+            hello its one
+          </p>
+        </div>
+      </div>
+       
+    </div>
+  </div>
+</div>
+`;
+
+exports[`test render Join element render correct: Messages several 1`] = `
+<div
+  className="react-scroll-to-bottom--css-nctuf-79elbk messages"
+>
+  <div
+    className="react-scroll-to-bottom--css-nctuf-1n7m0yu"
+  >
+    <div>
+       
+      <div
+        className="msgContainer justifyStart"
+      >
+        <div
+          className="msgBox"
+        >
+          <p
+            className="msgText colorDark"
+          >
+            hello its one
+          </p>
+        </div>
+        <p
+          className="sentMsg pl-10"
+        >
+          one
+        </p>
+      </div>
+       
+    </div>
+    <div>
+       
+      <div
+        className="msgContainer justifyStart"
+      >
+        <div
+          className="msgBox"
+        >
+          <p
+            className="msgText colorDark"
+          >
+            hello its two
+          </p>
+        </div>
+        <p
+          className="sentMsg pl-10"
+        >
+          two
+        </p>
+      </div>
+       
+    </div>
+  </div>
+</div>
+`;

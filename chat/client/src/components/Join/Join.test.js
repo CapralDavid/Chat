@@ -38,6 +38,7 @@ describe('test render Join element', () => {
   }); 
 
   test('render correct: Join with argument ', () => {
+    const varOne = {user:"one", text:"hello its one"}
     const component = renderer.create(
       <Router>
       <Join></Join>

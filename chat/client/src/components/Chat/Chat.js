@@ -78,6 +78,7 @@ const Chat = ({location}) => {
 
     };
     console.log("message, messages", messages);  // , message, messages);
+    console.log("names", name)
 
     //НУЖНО СДЕЛАТЬ CSS
 
