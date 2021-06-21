@@ -1,3 +1,87 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render correct 1`] = `undefined`;
+exports[`test render Join element render correct Join 1`] = `
+<div
+  className="joinOuterContainer"
+>
+  <div
+    className="joinInnerContainer"
+  >
+    <h1
+      className="heading"
+    >
+      Join Chat
+    </h1>
+    <div>
+      <input
+        className="joinInput"
+        onChange={[Function]}
+        placeholder="Name"
+        type="text"
+      />
+    </div>
+    <div>
+      <input
+        className="joinInput mt-20"
+        onChange={[Function]}
+        placeholder="Room"
+        type="text"
+      />
+    </div>
+    <a
+      href="/chat?name=&room="
+      onClick={[Function]}
+    >
+      <button
+        className="button mt-20"
+        type="submit"
+      >
+        Enter
+      </button>
+    </a>
+  </div>
+</div>
+`;
+
+exports[`test render Join element render correct: Join with argument  1`] = `
+<div
+  className="joinOuterContainer"
+>
+  <div
+    className="joinInnerContainer"
+  >
+    <h1
+      className="heading"
+    >
+      Join Chat
+    </h1>
+    <div>
+      <input
+        className="joinInput"
+        onChange={[Function]}
+        placeholder="Name"
+        type="text"
+      />
+    </div>
+    <div>
+      <input
+        className="joinInput mt-20"
+        onChange={[Function]}
+        placeholder="Room"
+        type="text"
+      />
+    </div>
+    <a
+      href="/chat?name=&room="
+      onClick={[Function]}
+    >
+      <button
+        className="button mt-20"
+        type="submit"
+      >
+        Enter
+      </button>
+    </a>
+  </div>
+</div>
+`;

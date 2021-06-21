@@ -9,19 +9,54 @@ import Join from './Join.js';
 //Invariant failed: You should not use <Link> outside a <Router>
 //
 
-const Container = Join;
+// const Container = Join;
 
-let wrapper;
+// let wrapper;
 
-beforeEach(() => {
-  wrapper = shallow(<Container />);
+// beforeEach(() => {
+//   wrapper = shallow(<Container />);
+// });
+
+
+// test('render correct Join', () => {
+//   expect(wrapper).toMatchSnapshot()
+
+// }); 
+
+describe('test render Join element', () => {
+
+  test('render correct Join', () => {
+    const component = renderer.create(
+        <Router>
+        <Join></Join>
+        </Router>
+      );
+  
+    let treeJoin = component.toJSON();
+    expect(treeJoin).toMatchSnapshot();
+  
+  }); 
+
+  test('render correct: Join with argument ', () => {
+    const component = renderer.create(
+      <Router>
+      <Join></Join>
+      </Router>
+    );
+
+    let treeJoinArg = component.toJSON();
+    expect(treeJoinArg).toMatchSnapshot();
+  
+  }); 
+
+
+
 });
 
 
-test('render correct', () => {
-  expect(wrapper).toMatchSnapshot()
 
-}); 
+
+
 
 
 // test('render correct', () => {
