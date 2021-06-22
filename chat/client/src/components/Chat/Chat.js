@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 import './Chat.css';
 
-import Infobar from '../Infobar/Infobar.js';
+import Infobar from '../infobar/infobar.js';
 import Input from '../Input/Input.js';
 import Messages from '../Messages/Messages.js';
 let socket;  //используем io

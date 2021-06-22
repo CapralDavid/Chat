@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Infobar.css';
+import './infobar.css';
 
 import closeIcon from '../../icons/closeIcon.png';
 import onlineIcon from '../../icons/onlineIcon.png';

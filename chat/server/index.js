@@ -4,7 +4,7 @@ const app = express();
 const server = http.createServer(app); 
 // const { Server } = require("socket.io");
 // const socketio = new Server(server);
-const {addUser, removeUser, getUser, getUsersInRoom} = require('./user.js');
+const {addUser, removeUser, getUser, getUsersInRoom} = require('./userServer.js');
 
 const socketio = require('socket.io')(server, {
     cors: {
